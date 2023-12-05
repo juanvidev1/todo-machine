@@ -1,8 +1,8 @@
-const TodoItem = () => {
+const TodoItem = ({ todo }) => {
     return (
         <li>
             <span>V</span>
-            <p>Llorar con la Llorona</p>
+            <p>{ todo }</p>
             <span>X</span>
         </li>
     );

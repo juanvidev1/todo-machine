@@ -8,13 +8,14 @@ import { CreateTodoButton } from './components/CreateTodoButton';
 function App() {
   return (
     <div className="App">
-      <TodoCounter />
+      {/* Las props se pasan como si fueran atributos de html a los componentes */}
+      <TodoCounter completed={16} total={25}/>
       <TodoSearch />
 
       <TodoList>
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        <TodoItem todo={'Estudiar React'}/>
+        <TodoItem todo={'Estudiar JavaScript'} />
+        <TodoItem todo={'Estudiar TypeScript'} />
       </TodoList>
 
       <CreateTodoButton />
