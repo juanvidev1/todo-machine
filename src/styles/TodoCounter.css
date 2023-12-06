@@ -1,0 +1,14 @@
+:root {
+    --gaming-font: 'Pixelify Sans', sans-serif;
+    --gaming-font2: font-family: 'Rubik', sans-serif;
+    --main-font: 'Mukta', sans-serif;
+  }
+
+.todo-counter {
+    font-family: var(--main-font);
+    font-size: 26px;
+    text-align: center;
+    margin: 0;
+    padding: 48px;
+    /* text-transform: uppercase; */
+}

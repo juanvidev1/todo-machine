@@ -1,0 +1,17 @@
+:root {
+    --gaming-font: 'Pixelify Sans', sans-serif;
+    --gaming-font2: font-family: 'Rubik', sans-serif;
+    --main-font: 'Mukta', sans-serif;
+}
+
+.search {
+    display: flex;
+    font-family: var(--main-font);
+    justify-content: center;
+}
+
+.search-todo-label {
+    margin: 3px;
+    padding-right: 5px;
+    font-weight: 700;
+}

@@ -1,7 +1,9 @@
+import '../styles/TodoSearch.css';
 const TodoSearch = () => {
 	return (
 		<div className="search">
-			<input type="text" placeholder="Añade un TODO" />
+			<label className="search-todo-label">Busca un TODO</label>
+			<input type="text" placeholder="Encuentra un TODO" />
 		</div>
 	);
 }
