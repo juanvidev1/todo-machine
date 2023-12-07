@@ -23,7 +23,7 @@ import '../styles/TodoCounter.css';
 function TodoCounter({ completed, total }) {
   return (
     <h1 className='todo-counter'>
-      Has completado {completed} de {total} TODOS
+      Has completado <span>{completed}</span> de <span>{total}</span> TODOS
     </h1>
   );
 }

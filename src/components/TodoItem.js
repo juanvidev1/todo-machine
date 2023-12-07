@@ -1,17 +1,15 @@
 import '../styles/TodoItem.css';
 
-import check from '../assets/check-mark-svgrepo-com.svg';
-import deleteIcon from '../assets/close-error-svgrepo-com.svg';
-
 const TodoItem = ({ text, completed }) => {
     return (
-        <li className="list-todo-item">
-            <span className="green-check">
-                <img src={ check } alt="check" />
+        <li className="todo-item">
+            {/** En esta línea se le dice a react que si la propiedad completed es true, incluya una clase específica dentro de el elemento html */}
+            <span className={`icon icon-check ${completed && "icon-check--active"}`}>
+                V
             </span>
-            <p className="todo-text">{ text }</p>
-            <span className="todo-delete">
-                <img src={ deleteIcon } alt="delete" />
+            <p className={`todo-item-text ${completed && "todo-item-text--complete"}`}>{ text }</p>
+            <span className="icon icon-delete">
+                X
             </span>
         </li>
     );

@@ -7,8 +7,6 @@
 .todo-list {
     list-style: none;
     font-family: var(--main-font);
-    width: 500px;
-    margin: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 0;
+    padding: 0 0 56px;
 }

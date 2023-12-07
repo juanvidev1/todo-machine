@@ -1,53 +1,53 @@
-.list-todo-item {
+.todo-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin: 10px 0 50px 0;
+    margin-top: 24px;
     background: linear-gradient(96deg, white, cyan);
-    border: solid 1px black;
     border-radius: 12px;
+    box-shadow: 0px 5px 50px lightgray;
 }
-.list-todo-item:hover {
+.todo-item:hover {
     background: linear-gradient(96deg, white, lightpink);
     padding-left: 5px;
     padding-bottom: 5px;
     box-shadow: 15px 5px 5px gray;
 }
 
-.list-todo-item span {
-    margin: 8px;
+.todo-item-text {
+    margin: 24px 0 24px 24px;
+    width: calc(100% - 120px);
+    text-align: center;
+}
+.todo-item-text--complete {
+    text-decoration: line-through;
 }
 
-.todo-text {
-    font-family: var(--main-font);
-    font-size: larger;
-    color: black;
-    font-weight: 700;
-    cursor: default;
+.icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.green-check, .todo-delete {
-    width: 10%;
-    height: auto;
-    cursor: pointer
+.icon-check {
+    position: absolute;
+    left: 12px;
 }
-.todo-delete {
-    width: 10%;
-    height: 10%;
+.icon-check--active {
+    color: #4caf50;
+}
+
+.icon-delete {
     position: relative;
-    top: -35px;
-    right: -30px;
-    box-shadow: 10px 5px 5px gray;
-    background: linear-gradient(lightpink, white);
-    border-radius: 20%;
+    top: -24px;
+    right: 0;
+}
+.icon-delete:hover {
+    color: red;
 }
 
-.green-check img {
-    width: 100%;
-    height: 100%;
-}
-.todo-delete img {
-    width: 100%;
-    height: 100%;
-    top: 0;
-}
