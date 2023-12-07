@@ -1,8 +1,6 @@
 import React from 'react';
 import '../styles/TodoSearch.css';
-const TodoSearch = () => {
-	const [searchValue, setSearchValue] = React.useState('');
-	// console.log(`The user wrote: ${searchValue}`);
+const TodoSearch = ({searchValue, setSearchValue}) => {
 
 
 	return (
