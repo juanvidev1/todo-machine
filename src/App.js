@@ -30,6 +30,8 @@ const todosDevList = [
   }
 ];
 
+const todosFinalList = [];
+
 function App() {
   /** Se debe tener en cuenta que respecto a los estados que NO SE PUEDEN PASAR ESTADOS DE HIJOS A PADRES, SÓLO SE PUEDE DE PADRES A HIJOS. En ese sentido es importante
    * crear los estados en el lugar correcto para que la aplicación funcione como es debido.
