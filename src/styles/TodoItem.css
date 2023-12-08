@@ -18,6 +18,7 @@
     margin: 24px 0 24px 24px;
     width: calc(100% - 120px);
     text-align: center;
+    font-size: x-large;
 }
 .todo-item-text--complete {
     text-decoration: line-through;
@@ -38,6 +39,9 @@
     position: absolute;
     left: 12px;
 }
+.icon-check:hover {
+    color: #4caf50;
+}
 .icon-check--active {
     color: #4caf50;
 }
@@ -49,5 +53,7 @@
 }
 .icon-delete:hover {
     color: red;
+    width: 60px;
+    height: 60px;
 }
 
