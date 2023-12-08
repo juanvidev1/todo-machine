@@ -1,4 +1,4 @@
-import '../styles/TodoAuthor.css';
+import './TodoAuthor.css';
 const TodoAuthor = () => {
     return (
         <div>
