@@ -9,6 +9,8 @@ import { TodosLoading } from '../TodosLoading';
 import { CreateFirstTodo } from '../CreateFirstTodo';
 import { TodosError } from '../TodosError/';
 import { TodoContext } from '../TodoContext';
+import { Modal } from '../Modal';
+import { CreateTodoForm } from '../CreateTodoForm';
 
 const AppUI = () => {
     const { 
@@ -16,7 +18,9 @@ const AppUI = () => {
         error,
         filteredTodos,
         completeTask,
-        deleteTask,  
+        deleteTask,
+        openModal,
+        setOpenModal,  
     } = React.useContext(TodoContext); // El todo context ya trae todas las props necesarias con el fin de que el código se vea más limpio
 
     return (
@@ -45,7 +49,13 @@ const AppUI = () => {
                 ))}
         </TodoList>
 
-      <CreateTodoButton />
+      <CreateTodoButton setOpenModal={setOpenModal} />
+
+      {openModal && (
+        <Modal>
+            <CreateTodoForm />
+        </Modal>
+      )}
     </>
     );
 }
