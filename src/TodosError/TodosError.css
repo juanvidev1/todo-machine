@@ -1,0 +1,7 @@
+.error {
+    height: 80px;
+    width: 80%;
+    background-color: lightcoral;
+    color: black;
+    border: solid 0.5px gray;
+}
