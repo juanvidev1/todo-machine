@@ -1,0 +1,17 @@
+.modal-background {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    right: 24px;
+    bottom: 55px;
+    background-color: #61DAFA;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+@media (max-width: 640px) {
+    .modal-background {
+        width: 250px;
+        height: 350px;
+    }
+}

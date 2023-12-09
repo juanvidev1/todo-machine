@@ -9,6 +9,7 @@ function TodoProvider(props) {
    */
   const [searchValue, setSearchValue] = React.useState('');
   const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
+  const [openModal, setOpenModal] = React.useState(true);
   
   // Estos son estados derivados. Nos permiten hacer cálculos con los estados
   const completedTodos = todos.filter(todo => todo.completed).length;
@@ -55,6 +56,8 @@ function TodoProvider(props) {
         deleteTask,
         saveTodos,
         todos,
+        openModal,
+        setOpenModal,
     }}>
       {props.children}
     </TodoContext.Provider>

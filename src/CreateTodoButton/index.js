@@ -1,12 +1,11 @@
 import './CreateTodoButton.css';
 
-const CreateTodoButton = () => {
+
+const CreateTodoButton = (props) => {
     return (
         // El evento onClick se dispara cuando se hace click en el botón. Se le puede pasar el parámetro event y se obtendrán ciertas cosas interesantes al respecto
         <button className='todo-button' onClick={ (event) => {
-            console.log('click');
-            console.log(event); // event es un objeto que contiene información sobre el evento que se ha producido. En este caso, se obtiene información sobre el botón que se ha pulsado.)
-            console.log(event.target); // El target del evento es el elemeto html que ha disparado el evento.
+            props.setOpenModal(true);
         } }>
             +
         </button>
