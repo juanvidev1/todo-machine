@@ -1,4 +1,7 @@
 import './TodoCounter.css';
+import { TodoPercentageBar } from '../TodoPercentageBar';
+import React from 'react';
+import { TodoContext } from '../TodoContext';
 /** Los componentes no tienen parámetros como tal, reciben algo que se llama props
  * Las props son un objeto que se le pasa a un componente que trae la información dinámica que se va a renderizar en el component
  * Se puede definir de dos formas:
@@ -20,8 +23,11 @@ import './TodoCounter.css';
  *  );
  * }
  */
-function TodoCounter({ completed, total }) {
-  let completedPercentage = Math.round((completed / total) * 100);
+function TodoCounter() {
+
+  const { completedTodos, totalTodos } = React.useContext(TodoContext);
+
+  let completedPercentage = Math.round((completedTodos / totalTodos) * 100);
   let text = '';
 
   if (isNaN(completedPercentage) || completedPercentage === null  || completedPercentage === Infinity) {
@@ -35,7 +41,7 @@ function TodoCounter({ completed, total }) {
     // Con esta estructura creamos un texto html dinámico. Al encerrarlo entre () y <></> Permite utilizar otras etiquetas html como span
     text = (
       <>
-        Has completado {<span>{completed}</span>} de {<span>{total}</span>} TODOS
+        Has completado {<span>{completedTodos}</span>} de {<span>{totalTodos}</span>} TODOS
       </>
     );
   } else {
@@ -45,46 +51,13 @@ function TodoCounter({ completed, total }) {
       </>
     );
   }
-  
-  // Se crea un string para el color y dependiendo del porcentaje se le asigna un color.
-  let bgColor = '';
-  if (completedPercentage >= 90) {
-    bgColor = '#60ff0a';
-  } else if (completedPercentage < 50 && completedPercentage >= 1) {
-    bgColor = 'red';
-  } else if (completedPercentage >= 50) {
-    bgColor = 'yellow';
-  } else {
-    bgColor = 'whitesmoke';
-  }
-
-  const percentageBar = {
-    width: `${completedPercentage}%`,
-    backgroundColor: bgColor,
-    height: '100%',
-    borderRadius: '40px',
-    // display: 'flex',
-    // alignItems: 'center',
-    textAlign: 'right',
-  }
-
-  const percentageText = {
-    padding: '0.5rem',
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: '1.5rem'
-  }
 
   return (
     <>
       <h1 className='todo-counter'>
       {text}
       </h1>
-      <div className='percentage-container'>
-        <div className='percentage-bar' style={percentageBar}>
-          <span style={percentageText}>{completedPercentage}%</span>
-        </div>
-      </div>
+      <TodoPercentageBar completedPercentage={completedPercentage} />
     </>
   );
 }

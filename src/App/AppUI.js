@@ -11,49 +11,39 @@ import { TodosError } from '../TodosError/';
 import { TodoContext } from '../TodoContext';
 
 const AppUI = () => {
+    const { 
+        loading,
+        error,
+        filteredTodos,
+        completeTask,
+        deleteTask,  
+    } = React.useContext(TodoContext); // El todo context ya trae todas las props necesarias con el fin de que el código se vea más limpio
+
     return (
         <>
       <TodoAuthor />
       {/* Las props se pasan como si fueran atributos de html a los componentes */}
-      <TodoContext.Consumer>
-        {({ 
-            loading,
-            error,
-            searchValue,
-            setSearchValue,
-            completedTodos,
-            totalTodos,
-            filteredTodos,
-            completeTask,
-            deleteTask,
-            saveTodos,
-            todos,  
-        }) => (
-            <>
-                <TodoCounter />
-                <TodoSearch />
-                <TodoList>
-                {loading && <TodosLoading /> }
-                {error && < TodosError />}
-                {(!loading && filteredTodos.length === 0) && <CreateFirstTodo />}
+      <TodoCounter />
+      <TodoSearch />
 
-                {filteredTodos.map(todo => (
-                <TodoItem 
-                    key={todo.text} 
-                    text={todo.text} 
-                    completed={todo.completed}
-                    /* Las props onComplete y onDelete son las que permiten actualizar un estado. Ahora, cuando la función requiera un parámetro se debe encapsular dentro de 
-                    otra función que no se ejecute. (Al invocar la función con los argumentos, esta se ejecutará inmediatamente dando el error de too many re-renders y por eso
-                    se encapsuló dentro de una función flecha)*/
-                    onComplete={() => ( completeTask(todo.text) )} 
-                    onDelete={() => ( deleteTask(todo.text) )} 
-                />
+      <TodoList>
+        {loading && <TodosLoading /> }
+        {error && < TodosError />}
+        {(!loading && filteredTodos.length === 0) && <CreateFirstTodo />}
+
+        {filteredTodos.map(todo => (
+            <TodoItem 
+                key={todo.text} 
+                text={todo.text} 
+                completed={todo.completed}
+                /* Las props onComplete y onDelete son las que permiten actualizar un estado. Ahora, cuando la función requiera un parámetro se debe encapsular dentro de 
+                otra función que no se ejecute. (Al invocar la función con los argumentos, esta se ejecutará inmediatamente dando el error de too many re-renders y por eso
+                se encapsuló dentro de una función flecha)*/
+                onComplete={() => ( completeTask(todo.text) )} 
+                onDelete={() => ( deleteTask(todo.text) )} 
+            />
                 ))}
-            </TodoList>
-            </>
-            
-        )}
-      </TodoContext.Consumer>
+        </TodoList>
 
       <CreateTodoButton />
     </>

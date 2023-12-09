@@ -39,7 +39,8 @@ function useLocalStorage(key, initialValue) {
                 let itemProdList;
                 if (!itemLS) {
                     localStorage.setItem(key, JSON.stringify(initialValue));
-                    itemProdList = initialValue; 
+                    itemProdList = initialValue;
+                    setItem(itemProdList); 
                 } else {
                     itemProdList = JSON.parse(itemLS);
                     setItem(itemProdList);
