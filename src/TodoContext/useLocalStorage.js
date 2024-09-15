@@ -27,41 +27,41 @@ import React from "react";
 // localStorage.removeItem('TODOS_V1'); // Para borrar el item de localStorage
 
 function useLocalStorage(key, initialValue) {
-    const [item, setItem] = React.useState(initialValue);
-    const [loading, setLoading] = React.useState(true);
-    const [error, setError] = React.useState(false);
+  const [item, setItem] = React.useState(initialValue);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
 
-    
-    React.useEffect(() => {
-        setTimeout(() => {
-            try {
-                const itemLS = localStorage.getItem(key);
-                let itemProdList;
-                if (!itemLS) {
-                    localStorage.setItem(key, JSON.stringify(initialValue));
-                    itemProdList = initialValue;
-                    setItem(itemProdList); 
-                } else {
-                    itemProdList = JSON.parse(itemLS);
-                    setItem(itemProdList);
-                }
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-                setError(true);
-                console.error(error);
-            }
-        }, 2500);
-    }, [])
-  
-    // Esta función actualiza el estado y además hace persistencia de la infirmación en localStorage
-    const saveItem = (newItem) => {
-      localStorage.setItem(key, JSON.stringify(newItem));
-      setItem(newItem);
-    };
-  
-    // En el caso de los custom hooks, lo ideal es retornar un objeto si se van a retornar más de dos propiedades
-    return { item, saveItem, loading, error };
-  }
+  React.useEffect(() => {
+    setTimeout(() => {
+      try {
+        const itemLS = localStorage.getItem(key);
+        let itemProdList;
+        if (!itemLS) {
+          localStorage.setItem(key, JSON.stringify(initialValue));
+          itemProdList = initialValue;
+          setItem(itemProdList);
+        } else {
+          itemProdList = JSON.parse(itemLS);
+          setItem(itemProdList);
+        }
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        setError(true);
+        console.error(error);
+      }
+    }, 2500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  export { useLocalStorage };
+  // Esta función actualiza el estado y además hace persistencia de la infirmación en localStorage
+  const saveItem = (newItem) => {
+    localStorage.setItem(key, JSON.stringify(newItem));
+    setItem(newItem);
+  };
+
+  // En el caso de los custom hooks, lo ideal es retornar un objeto si se van a retornar más de dos propiedades
+  return { item, saveItem, loading, error };
+}
+
+export { useLocalStorage };
