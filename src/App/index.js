@@ -13,6 +13,7 @@ import { TodosError } from "../TodosError/";
 import { Modal } from "../Modal";
 import { CreateTodoForm } from "../CreateTodoForm";
 import { TodoHeader } from "../TodoHeader";
+import { EmptyFilteredTodos } from "../EmptyFilteredTodos";
 import { useTodos } from "./useTodos";
 
 function App() {
@@ -40,23 +41,41 @@ function App() {
         <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </TodoHeader>
 
-      <TodoList>
-        {loading && <TodosLoading />}
-        {error && <TodosError />}
-        {!loading && filteredTodos.length === 0 && <CreateFirstTodo />}
-
-        {filteredTodos.map((todo) => (
+      {/* Las props se pasan como si fueran atributos de html a los componentes, se llaman render props y render functions
+      las funciones dentro de las render props son apropiadas, especialmente cuando se van a pasar algunos parámetros como props a los componentes qie retorna
+      la función */}
+      <TodoList
+        loading={loading}
+        error={error}
+        filteredTodos={filteredTodos}
+        totalTodos={totalTodos}
+        searchValue={searchValue}
+        onError={() => <TodosError />} // En este caso, a pesar de que el componente de error no requiere props, se deja como función, por si se requieren parámeteros en el futuro
+        onLoading={<TodosLoading />} // Esta sería una render prop, como el estado loading no necesita props, no se requiere una función para enviar el componente
+        onEmptyTodos={() => <CreateFirstTodo />}
+        onEmptyFilteredTodos={(searchText) => (
+          <EmptyFilteredTodos searchText={searchText} />
+        )}
+        render={(todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
-            /* Las props onComplete y onDelete son las que permiten actualizar un estado. Ahora, cuando la función requiera un parámetro se debe encapsular dentro de 
-                otra función que no se ejecute. (Al invocar la función con los argumentos, esta se ejecutará inmediatamente dando el error de too many re-renders y por eso
-                se encapsuló dentro de una función flecha)*/
             onComplete={() => completeTask(todo.text)}
             onDelete={() => deleteTask(todo.text)}
           />
-        ))}
+        )}
+      >
+        {/* Esta sería una render function */}
+        {/* {(todo) => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTask(todo.text)}
+            onDelete={() => deleteTask(todo.text)}
+          />
+        )} */}
       </TodoList>
 
       <CreateTodoButton setOpenModal={setOpenModal} />
