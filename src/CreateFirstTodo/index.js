@@ -1,19 +1,16 @@
 import "./CreateFirstTodo.css";
 import React from "react";
-import { TodoContext } from "../TodoContext";
 
-function CreateFirstTodo () {
-    const { setOpenModal } = React.useContext(TodoContext);
+function CreateFirstTodo({ setOpenModal }) {
+  const createTodo = () => {
+    setOpenModal((prevState) => !prevState);
+  };
 
-    const createTodo = () => {
-        setOpenModal(prevState => !prevState);
-    }
-
-    return (
-        <button className="create-first" onClick={createTodo}>
-            Crea tu primer TODO! 🎉🎉🎉🎉
-        </button>
-    )
-};
+  return (
+    <button className="create-first" onClick={createTodo}>
+      Crea tu primer TODO! 🎉🎉🎉🎉
+    </button>
+  );
+}
 
 export { CreateFirstTodo };
