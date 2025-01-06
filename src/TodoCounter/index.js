@@ -23,11 +23,14 @@ import React from "react";
  *  );
  * }
  */
-function TodoCounter({ completedTodos, totalTodos }) {
+function TodoCounter({ completedTodos, totalTodos, loading }) {
   let completedPercentage = Math.round((completedTodos / totalTodos) * 100);
   let text = "";
 
-  if (
+  if (loading) {
+    text = "Cargando...";
+    completedPercentage = 0;
+  } else if (
     isNaN(completedPercentage) ||
     completedPercentage === null ||
     completedPercentage === Infinity
@@ -57,7 +60,10 @@ function TodoCounter({ completedTodos, totalTodos }) {
   return (
     <>
       <h1 className="todo-counter">{text}</h1>
-      <TodoPercentageBar completedPercentage={completedPercentage} />
+      <TodoPercentageBar
+        completedPercentage={completedPercentage}
+        loading={loading}
+      />
     </>
   );
 }

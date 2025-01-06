@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      <TodoHeader>
+      <TodoHeader loading={loading}>
         <TodoAuthor />
         {/* Las props se pasan como si fueran atributos de html a los componentes */}
         <TodoCounter completedTodos={completedTodos} totalTodos={totalTodos} />
