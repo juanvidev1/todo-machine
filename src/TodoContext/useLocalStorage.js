@@ -30,6 +30,7 @@ function useLocalStorage(key, initialValue) {
   const [item, setItem] = React.useState(initialValue);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
+  const [syncItem, setSyncItem] = React.useState(true);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -45,14 +46,20 @@ function useLocalStorage(key, initialValue) {
           setItem(itemProdList);
         }
         setLoading(false);
+        setSyncItem(true);
       } catch (error) {
         setLoading(false);
         setError(true);
         console.error(error);
       }
-    }, 2500);
+    }, 1500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [syncItem]);
+
+  const sync = () => {
+    setLoading(true);
+    setSyncItem(false);
+  };
 
   // Esta función actualiza el estado y además hace persistencia de la infirmación en localStorage
   const saveItem = (newItem) => {
@@ -61,7 +68,7 @@ function useLocalStorage(key, initialValue) {
   };
 
   // En el caso de los custom hooks, lo ideal es retornar un objeto si se van a retornar más de dos propiedades
-  return { item, saveItem, loading, error };
+  return { item, saveItem, loading, error, setSyncItem, sync };
 }
 
 export { useLocalStorage };

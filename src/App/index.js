@@ -14,6 +14,7 @@ import { Modal } from "../Modal";
 import { CreateTodoForm } from "../CreateTodoForm";
 import { TodoHeader } from "../TodoHeader";
 import { EmptyFilteredTodos } from "../EmptyFilteredTodos";
+import { ChangeAlertWithStorageListener } from "../ChangeAlert";
 import { useTodos } from "./useTodos";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
     searchValue,
     setSearchValue,
     addTodo,
+    syncTodos,
   } = useTodos();
 
   return (
@@ -52,7 +54,7 @@ function App() {
         searchValue={searchValue}
         onError={() => <TodosError />} // En este caso, a pesar de que el componente de error no requiere props, se deja como función, por si se requieren parámeteros en el futuro
         onLoading={<TodosLoading />} // Esta sería una render prop, como el estado loading no necesita props, no se requiere una función para enviar el componente
-        onEmptyTodos={() => <CreateFirstTodo />}
+        onEmptyTodos={() => <CreateFirstTodo setOpenModal={setOpenModal} />}
         onEmptyFilteredTodos={(searchText) => (
           <EmptyFilteredTodos searchText={searchText} />
         )}
@@ -85,6 +87,8 @@ function App() {
           <CreateTodoForm setOpenModal={setOpenModal} addTodo={addTodo} />
         </Modal>
       )}
+
+      <ChangeAlertWithStorageListener syncTodos={syncTodos} />
     </>
   );
 }
